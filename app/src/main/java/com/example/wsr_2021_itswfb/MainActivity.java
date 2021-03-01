@@ -16,11 +16,23 @@ public class MainActivity extends AppCompatActivity {
 
     EditText etEmail, etPass;
     DataBaseHelper db;
+    SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        sharedPref = getSharedPreferences("myInfo", MODE_PRIVATE);
+        String email =  sharedPref.getString("email", "");
+        if(email.equals("")){
+            setContentView(R.layout.activity_main);
+        }
+        else{
+            Intent i = new Intent(this, UserListActivity.class);
+            startActivity(i);
+        }
+
+
 
         etEmail = findViewById(R.id.etEmail);
         etPass = findViewById(R.id.etPass);
@@ -34,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
 
         Boolean success = db.AuthUser(email,password);
         if(success){
+
+            sharedPref = getSharedPreferences("myInfo", MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedPref.edit();
+            edit.putString("email", email);
+            edit.apply();
+
             Intent i = new Intent(this, UserListActivity.class);
             startActivity(i);
         }

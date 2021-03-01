@@ -83,7 +83,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             do {
                 String email = c.getString(c.getColumnIndex(colUserEmail));
                 String pass = c.getString(c.getColumnIndex(colUserPass));
-                User user = new User(email, pass);
+                User user = new User(email, pass,0);
                 users.add(user);
             }while(c.moveToNext());
         }
