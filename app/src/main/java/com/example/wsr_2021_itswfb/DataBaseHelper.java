@@ -30,7 +30,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 colUserEmail + " TEXT PRIMARY KEY, " +
                 colUserPass + " TEXT NOT NULL);"
                 );
-
     }
 
     @Override

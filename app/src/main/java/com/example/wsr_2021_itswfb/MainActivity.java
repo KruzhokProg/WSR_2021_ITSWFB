@@ -2,6 +2,7 @@ package com.example.wsr_2021_itswfb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         Boolean success = db.AuthUser(email,password);
         if(success){
-            Toast.makeText(this, "Вы вошли!", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, UserListActivity.class);
+            startActivity(i);
         }
         else{
             Toast.makeText(this, "Ошибка входа!", Toast.LENGTH_SHORT).show();
